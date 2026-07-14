@@ -42,7 +42,12 @@ router.get("/", (req, res) => {
 router.post("/", async (req, res) => {
   // Always 200 immediately so Meta doesn't retry-storm us; process async.
   res.sendStatus(200);
+router.post("/", async (req, res) => {
+  // Always 200 immediately so Meta doesn't retry-storm us; process async.
+  res.sendStatus(200);
+  console.log("WEBHOOK HIT:", JSON.stringify(req.body).slice(0, 500));
 
+  try {
   try {
     const entry = req.body.entry?.[0];
     const change = entry?.changes?.[0];
